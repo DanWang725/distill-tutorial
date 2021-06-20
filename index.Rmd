@@ -8,12 +8,20 @@ site: distill::distill_website
 This is where I will describe my final project.
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggthemes)
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
+```
+```{r car-plot}
+mtcars %>% 
+  select(mpg, wt) %>% 
+  ggplot(aes(x = wt, y = mpg))+
+  geom_jitter()+
+  geom_smooth(formula = y ~ x, method = "lm", se = FALSE)+
+  theme_clean()+
+  labs(title = "Fuel Efficiency and Weight", subtitles = "Heavier cars are less fuel efficient",
+       x = "Weight (1000s of lbs)", y = "MPG", caption = "Henderson and Vellerman (1981)")
 
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
 
 ```
 
